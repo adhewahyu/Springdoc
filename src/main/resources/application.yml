@@ -1,0 +1,34 @@
+server:
+  port: 80
+  error:
+    include-message: always
+    whitelabel:
+      enabled: false
+  forward-headers-strategy: framework
+spring:
+  config:
+    import: "optional:configserver:"
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  application:
+    name: springdoc-app
+swagger:
+  host: "http://localhost:80"
+  contextPath: "/api/springdoc"
+logging:
+  level:
+    io:
+      swagger:
+        models:
+          parameters:
+            AbstractSerializableParameter: error
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: "/index.html"
+    doc-expansion: none
+    operationsSorter: alpha
+    tagsSorter: alpha
+    disable-swagger-default-url: true
+    display-request-duration: true
